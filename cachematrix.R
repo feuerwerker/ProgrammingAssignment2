@@ -1,7 +1,11 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions below 
+## 
 
-## makeCacheMatrix () - function, that produces a list, containing 4 functions (set, get, setrev, getrev)
+## makeCacheMatrix() - function, that produces a list containing 4 functions: 
+## set - to set the matrix
+## get - to get the matrix 
+## setrev - to store the calculated inversed matrix to cache
+## getrev - to get the calculated inversed matrix from cache
 
 makeCacheMatrix <- function(x = matrix()) {
 		r <- NULL
@@ -13,19 +17,21 @@ makeCacheMatrix <- function(x = matrix()) {
 		setrev <- function(solve) 
 			r <<- solve
         	getrev <- function() r
-        	list(set = set, get = get, setrev = setrev, getrev = getrev)
+        	list(set = set, get = get, setrev = setrev, getrev = getrev) ##return the list of functions
 }
 
-## Write a short comment describing this function
+## This function produces the inversed matrix for the object that was created with the makeCacheMatrix() function.
+## Firstly it checks if there was the cached result. If so, the function stops the computation and returns cached result.
+## Otherwise it calculates the inversed matrix for the given data and stores it to the cache.
 
 cacheSolve <- function(x, ...) {
 		r <- x$getrev()
-		if(!is.null(r)) {
+		if(!is.null(r)) {	## if the inversed matrix was cached
 			message("getting cached data")
-			return(r) ## Return the inversed matrix from cache
+			return(r)	## Return the inversed matrix from cache
 		}
 		data <- x$get()
-		r <- solve(data, ...)
-		x$setrev(r)
-		r ## Return a matrix that is the inverse of 'x'
+		r <- solve(data, ...)	## Compute the inverse matrix
+		x$setrev(r) 		
+		r 	   		## Return a matrix that is the inverse of 'x'
 }
