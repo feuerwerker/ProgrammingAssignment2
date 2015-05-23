@@ -1,5 +1,5 @@
-## These functions below 
-## 
+## These functions below are made to create an object that stores the matrix, calculate 
+## and cache the inversed matrix for it.
 
 ## makeCacheMatrix() - function, that produces a list containing 4 functions: 
 ## set - to set the matrix
